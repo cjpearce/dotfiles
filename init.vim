@@ -50,6 +50,7 @@ set list
 
 " Filetype settings
 au BufNewFile,BufRead *.js set filetype=javascript
+au BufNewFile,BufRead *.jbuilder set filetype=javascript
 
 " Input mappings
 inoremap jk <ESC>
