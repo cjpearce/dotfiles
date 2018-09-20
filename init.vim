@@ -1,12 +1,10 @@
-
 " Color scheme
 set background=dark
 
 if has('gui_vimr')
     colorscheme evening
-elseif
+else
     set termguicolors
-    colorscheme default
 endif
 
 syntax on
@@ -21,6 +19,8 @@ call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('pangloss/vim-javascript')
 call minpac#add('junegunn/fzf.vim')
+call minpac#add('scrooloose/nerdtree')
+call minpac#add('Xuyuanp/nerdtree-git-plugin')
 
 " minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
 call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -37,7 +37,9 @@ set cursorcolumn
 set cursorline
 
 let mapleader=" "
+set clipboard=unnamedplus
 
+set number
 set rnu
 set updatetime=100
 
@@ -62,6 +64,8 @@ inoremap <C-t>     <Esc>:tabnew<CR>
 
 nmap <Leader>t :Files<CR>
 nmap <Leader>b :Buffers<CR>
+nmap <Leader>ce :edit $MYVIMRC<CR>
+nmap <Leader>cs :source $MYVIMRC<CR>
 
 set rtp+=/usr/local/opt/fzf
 
@@ -81,5 +85,5 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 
-let g:gitgutter_sign_column_always = 1
+let signcolumn=1
 let g:deoplete#enable_at_startup = 1
