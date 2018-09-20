@@ -1,0 +1,9 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = Chris Pearce
+	email = christopher.james.pearce@gmail.com
+[alias]
+	s = status
+	l = log
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
