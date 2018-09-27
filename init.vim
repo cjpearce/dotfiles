@@ -67,6 +67,9 @@ nmap <Leader>t :Files<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>ce :edit $MYVIMRC<CR>
 nmap <Leader>cs :source $MYVIMRC<CR>
+nmap <Leader>w :Windows<CR>
+nmap <silent> <Leader>nf :NERDTreeFind<CR>
+nmap <silent> <Leader>nt :NERDTreeToggle<CR>
 
 set rtp+=/usr/local/opt/fzf
 
@@ -88,3 +91,6 @@ let g:fzf_colors =
 
 let signcolumn=1
 let g:deoplete#enable_at_startup = 1
+let g:fzf_buffers_jump = 1
+
+command! -bang -nargs=* Agc call fzf#vim#ag(<q-args>, '--word-regexp', <bang>0)
