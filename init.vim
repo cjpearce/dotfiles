@@ -1,12 +1,9 @@
 " Color scheme
 set background=dark
 
-if has('gui_vimr')
-    colorscheme evening
-else
-    set termguicolors
-endif
+colorscheme base16-default-dark
 
+set termguicolors
 syntax on
 
 " Plugins
@@ -15,15 +12,25 @@ call minpac#init()
 
 call minpac#add('tpope/vim-surround')
 call minpac#add('airblade/vim-gitgutter')
-call minpac#add('Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' })
 call minpac#add('vim-airline/vim-airline')
 call minpac#add('pangloss/vim-javascript')
+
 call minpac#add('junegunn/fzf.vim')
+
 call minpac#add('scrooloose/nerdtree')
 call minpac#add('Xuyuanp/nerdtree-git-plugin')
+call minpac#add('elixir-editors/vim-elixir')
+call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+call minpac#add('elzr/vim-json')
+call minpac#add('airblade/vim-rooter')
+call minpac#add('chriskempson/base16-vim')
+call minpac#add('prettier/vim-prettier', {'do': '!yarn install'})
+call minpac#add('benmills/vimux')
 
 " minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
 call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+filetype plugin indent on
 
 " Indentation/Tab Settings
 
@@ -33,8 +40,6 @@ set expandtab
 set laststatus=2
 
 " Sets column and line guides
-set cursorcolumn
-set cursorline
 
 let mapleader=" "
 set clipboard=unnamedplus
@@ -63,13 +68,16 @@ inoremap <C-S-tab> <Esc>:tabprevious<CR>i
 inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
 
+nmap <Leader>f :Format<CR>
 nmap <Leader>t :Files<CR>
+nmap <Leader>/ :Rg 
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>ce :edit $MYVIMRC<CR>
 nmap <Leader>cs :source $MYVIMRC<CR>
 nmap <Leader>w :Windows<CR>
 nmap <silent> <Leader>nf :NERDTreeFind<CR>
 nmap <silent> <Leader>nt :NERDTreeToggle<CR>
+nmap <Leader><Leader> :Rg<CR>
 
 set rtp+=/usr/local/opt/fzf
 
@@ -94,3 +102,69 @@ let g:deoplete#enable_at_startup = 1
 let g:fzf_buffers_jump = 1
 
 command! -bang -nargs=* Agc call fzf#vim#ag(<q-args>, '--word-regexp', <bang>0)
+
+" colour configuration
+hi SpellBad ctermbg=10
+
+let g:vim_json_syntax_conceal = 0
+
+" autocommands
+autocmd BufNewFile,BufRead .babelrc set syntax=json
+
+"COC configuration
+
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+command! -nargs=0 Format :call CocAction('format')
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" Remap for format selected region
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+map gm :call SynStack()<CR>
