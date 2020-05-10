@@ -1,7 +1,7 @@
 " Color scheme
 set background=dark
 
-colorscheme base16-default-dark
+colorscheme "base16-default-dark"
 
 set termguicolors
 syntax on
