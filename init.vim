@@ -44,6 +44,7 @@ set laststatus=2
 let mapleader=" "
 set clipboard=unnamedplus
 
+let &colorcolumn="80,100"
 set number
 set rnu
 set updatetime=100
