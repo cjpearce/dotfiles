@@ -1,7 +1,7 @@
 " Color scheme
 set background=dark
 
-colorscheme "base16-default-dark"
+"colorscheme "base16-default-dark"
 
 set termguicolors
 syntax on
@@ -98,7 +98,6 @@ let g:fzf_colors =
 
 
 let signcolumn=1
-let g:deoplete#enable_at_startup = 1
 let g:fzf_buffers_jump = 1
 
 command! -bang -nargs=* Agc call fzf#vim#ag(<q-args>, '--word-regexp', <bang>0)
@@ -159,6 +158,14 @@ nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 function! SynStack()
   if !exists("*synstack")
