@@ -32,6 +32,9 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 filetype plugin indent on
 
+" Mouse settings
+set mouse=a
+
 " Indentation/Tab Settings
 
 set shiftwidth=2
