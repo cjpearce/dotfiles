@@ -107,12 +107,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*"'
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/chrispearce/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chrispearce/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/chrispearce/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chrispearce/google-cloud-sdk/completion.zsh.inc'; fi
-
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
@@ -121,3 +115,9 @@ export NVM_DIR="$HOME/.nvm"
 # the following to ~/.zshrc:
 
 eval "$(rbenv init -)"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/chrispearce/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/chrispearce/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/chrispearce/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/chrispearce/google-cloud-sdk/completion.zsh.inc'; fi
