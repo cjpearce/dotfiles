@@ -9,3 +9,10 @@
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [core]
 	editor = nvim
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[http]
+	version = HTTP/1.1

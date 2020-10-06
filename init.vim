@@ -179,3 +179,5 @@ function! SynStack()
 endfunc
 
 map gm :call SynStack()<CR>
+
+set inccommand=split
